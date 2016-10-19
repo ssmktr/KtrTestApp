@@ -19,7 +19,7 @@ public class Main : MonoBehaviour {
 
     }
 	
-	void Update () {
-	
+	public void ReceiveKey(string keycode) {
+        Value1.text = keycode;
 	}
 }

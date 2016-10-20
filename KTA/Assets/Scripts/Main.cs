@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Main : MonoBehaviour {
 
-    public GameObject GetPhoneNumber;
+    public GameObject GetPhoneNumber, PlayToastMsg;
     public UILabel Value1;
     AndroidJavaObject MyObj;
 
@@ -14,6 +14,14 @@ public class Main : MonoBehaviour {
             if (MyObj != null)
             {
                 MyObj.Call("GetPhoneNumber");
+            }
+        };
+
+        UIEventListener.Get(PlayToastMsg).onClick = (sender) =>
+        {
+            if (MyObj != null)
+            {
+                MyObj.Call("PlayToast", Value1.text);
             }
         };
     }

@@ -3,45 +3,35 @@ using System.Collections;
 
 public class Main : MonoBehaviour {
 
-    public GameObject GetPhoneNumber, PlayToastMsg;
+    public GameObject GetPhoneNumber, PlayToastMsg, GetPhoneID;
     public UILabel Value1;
-    AndroidJavaObject MyObj;
 
     void Awake()
     {
         UIEventListener.Get(GetPhoneNumber).onClick = (sender) =>
         {
-            if (MyObj != null)
-            {
-                MyObj.Call("GetPhoneNumber");
-            }
+            Value1.text = NativeManager.Instance.ReceivePhoneNumber();
         };
 
         UIEventListener.Get(PlayToastMsg).onClick = (sender) =>
         {
-            if (MyObj != null)
-            {
-                MyObj.Call("PlayToast", Value1.text);
-            }
+            NativeManager.Instance.PlayToastMsg(Value1.text);
+        };
+
+        UIEventListener.Get(GetPhoneID).onClick = (sender) =>
+        {
+            Value1.text = NativeManager.Instance.ReceivePhoneModelID();
         };
     }
 
 	void Start () {
+        NativeManager.Instance.Init();
         Value1.text = "Init";
-
-        AndroidJavaClass MyClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
-        MyObj = MyClass.GetStatic<AndroidJavaObject>("currentActivity");
-
     }
-	
-    // 볼륨, 백키, 등 기기에 달린 버튼누렀을때 해당 번호 얻기
-	public void ReceiveKey(string keycode) {
-        Value1.text = keycode;
-	}
 
-    // 폰번호 얻기
-    public void ReceivePhoneNumber(string number)
+    // 볼륨, 백키, 등 기기에 달린 버튼누렀을때 해당 번호 얻기
+    public void ReceiveKey(string keycodeint)
     {
-        Value1.text = number;
+        Value1.text = keycodeint;
     }
 }

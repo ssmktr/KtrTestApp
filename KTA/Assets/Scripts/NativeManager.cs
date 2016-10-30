@@ -7,8 +7,8 @@ public class NativeManager : Singleton<NativeManager> {
 
     public void Init()
     {
-        //AndroidJavaClass MyClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
-        //MyObj = MyClass.GetStatic<AndroidJavaObject>("currentActivity");
+        AndroidJavaClass MyClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+        MyObj = MyClass.GetStatic<AndroidJavaObject>("currentActivity");
     }
 
     // 폰번호 얻기

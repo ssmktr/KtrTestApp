@@ -51,7 +51,7 @@ public class Login : MonoBehaviour {
         form.AddField("platform_id", InputId.value);
         form.AddField("platform_pass", InputPw.value);
 
-        WWW www = new WWW(DB_URL + "login/login.php", form);
+        WWW www = new WWW(DB_URL + "Login/Login.php", form);
 
         while (!www.isDone)
             yield return null;
@@ -99,7 +99,7 @@ public class Login : MonoBehaviour {
         form.AddField("platform_pass", InputPw.value);
         form.AddField("nickname", InputNickName.value);
 
-        WWW www = new WWW(DB_URL + "login/signup.php", form);
+        WWW www = new WWW(DB_URL + "Login/Signup.php", form);
 
         while (!www.isDone)
             yield return null;

@@ -24,12 +24,12 @@
 			while($row = $result->fetch_assoc())
 			{
 				$UnitData = array();
-				$UnitData["pc_gsn"] = (int)$row["pc_gsn"];
-				$UnitData["pc_id"] = (int)$row["pc_id"];
-				$UnitData["star_grade"] = (int)$row["star_grade"];
-				$UnitData["pc_position"] = (int)$row["pc_position"];
-				$UnitData["pc_reg_dt"] = (double)$row["pc_reg_dt"];
-				$UnitData["pc_state"] = (int)$row["pc_state"];
+				$UnitData["pc_gsn"] = $row["pc_gsn"];
+				$UnitData["pc_id"] = $row["pc_id"];
+				$UnitData["star_grade"] = $row["star_grade"];
+				$UnitData["pc_position"] = $row["pc_position"];
+				$UnitData["pc_reg_dt"] = $row["pc_reg_dt"];
+				$UnitData["pc_state"] = $row["pc_state"];
 				$UnitData["skill_level_arr"] = $row["skill_level_arr"];
 
 				$UnitList[$idx] = $UnitData;

@@ -73,11 +73,31 @@ public class Login : MonoBehaviour {
                         if (DicData.ContainsKey("AccountInfo"))
                         {
                             Dictionary<string, object> DicAccountInfo = DicData["AccountInfo"] as Dictionary<string, object>;
+                            if (DicAccountInfo.ContainsKey("account_gsn"))
+                                GameManager.Instance.AccountInfo.account_gsn = uint.Parse(JsonUtil.GetStringValue(DicAccountInfo, "account_gsn"));
+
+                            if (DicAccountInfo.ContainsKey("platform_id"))
+                                GameManager.Instance.AccountInfo.platform_id = JsonUtil.GetStringValue(DicAccountInfo, "platform_id");
+
+                            if (DicAccountInfo.ContainsKey("platform_pass"))
+                                GameManager.Instance.AccountInfo.platform_pass = JsonUtil.GetStringValue(DicAccountInfo, "platform_pass");
+
                             if (DicAccountInfo.ContainsKey("nickname"))
                             {
                                 InputNickName.value = JsonUtil.GetStringValue(DicAccountInfo, "nickname");
-                                GameManager.GoScene("Lobby");
+                                GameManager.Instance.AccountInfo.nickname = InputNickName.value;
                             }
+
+                            if (DicAccountInfo.ContainsKey("join_dt"))
+                                GameManager.Instance.AccountInfo.join_dt = long.Parse(JsonUtil.GetStringValue(DicAccountInfo, "join_dt"));
+
+                            if (DicAccountInfo.ContainsKey("block_type"))
+                                GameManager.Instance.AccountInfo.block_type = int.Parse(JsonUtil.GetStringValue(DicAccountInfo, "block_type")) != 0;
+
+                            if (DicAccountInfo.ContainsKey("block_expire_dt"))
+                                GameManager.Instance.AccountInfo.block_expire_dt = long.Parse(JsonUtil.GetStringValue(DicAccountInfo, "block_expire_dt"));
+
+                            GameManager.GoScene("Lobby");
                         }
                     }
                 }

@@ -51,7 +51,7 @@ public class UnitPanel : MonoBehaviour {
         GameManager.Instance.MyUnitList.Clear();
 
         WWWForm form = new WWWForm();
-        form.AddField("account_gsn", 2);
+        form.AddField("account_gsn", GameManager.Instance.AccountInfo.account_gsn.ToString());
 
         WWW www = new WWW(Login.DB_URL + "Unit/GetAllUnitData.php", form);
 

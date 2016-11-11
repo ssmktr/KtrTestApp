@@ -37,7 +37,7 @@ public class ItemData
     public int enchant_grade;
     public uint equip_target_gsn;
     public uint item_state;
-    public ulong item_reg_dt;
+    public long item_reg_dt;
     public uint item_lock_state;
 }
 
@@ -51,13 +51,13 @@ public class MaterialItemData
 // 계정 정보
 public class AccountInfo
 {
-    public int account_gsn;
+    public uint account_gsn;
     public string platform_id;
     public string platform_pass;
     public string nickname = "None";
-    public ulong join_dt;
+    public long join_dt;
     public bool block_type;
-    public ulong block_expire_dt;
+    public long block_expire_dt;
 }
 
 // 유저 정보

@@ -1,6 +1,8 @@
 <?php
 	include "../DBConnect.php";
 
+function GetAllUnitData()
+{
 	$account_gsn = $_REQUEST["account_gsn"];
 
 	$data = array();
@@ -42,4 +44,6 @@
 	$conn->close();
 	echo json_encode($data);
 	exit();
+}
+	
 ?>

@@ -5,19 +5,24 @@ using MiniJSON;
 
 public class UnitPanel : MonoBehaviour {
 
-    public GameObject CreateListBtn;
+    public GameObject CreateListBtn, AddUnitBtn;
     public UIScrollView ScrollView;
     public UIGrid Grid;
 
     ObjectPaging Paging;
     List<UnitData> UnitList = new List<UnitData>();
 
-	void Start () {
+    void Start() {
         UIEventListener.Get(CreateListBtn).onClick = (sender) =>
         {
             StartCoroutine(_GetAllUnitData());
         };
-	}
+
+        UIEventListener.Get(AddUnitBtn).onClick = (sender) =>
+        {
+            StartCoroutine(_AddUnit());
+        };
+    }
 
     void CreateList()
     {
@@ -51,13 +56,13 @@ public class UnitPanel : MonoBehaviour {
         GameManager.Instance.MyUnitList.Clear();
 
         WWWForm form = new WWWForm();
-        form.AddField("account_gsn", GameManager.Instance.AccountInfo.account_gsn.ToString());
+        form.AddField("account_gsn", (int)GameManager.Instance.AccountInfo.account_gsn);
 
         WWW www = new WWW(Login.DB_URL + "Unit/GetAllUnitData.php", form);
 
         yield return www;
 
-        
+
         if (www.isDone)
         {
             if (www.error == null)
@@ -103,6 +108,33 @@ public class UnitPanel : MonoBehaviour {
                             CreateList();
                         }
                     }
+                }
+            }
+            else
+                Debug.Log(www.error);
+        }
+    }
+
+    IEnumerator _AddUnit()
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("account_gsn", (int)GameManager.Instance.AccountInfo.account_gsn);
+        form.AddField("pc_id", Random.Range(101, 1000));
+
+        WWW www = new WWW(Login.DB_URL + "Unit/AddUnitData.php", form);
+
+        yield return www;
+        if (www.isDone)
+        {
+            if (www.error == null)
+            {
+                string Content = www.text.Trim();
+                Debug.Log(Content);
+
+                Dictionary<string, object> DicData = Json.Deserialize(Content) as Dictionary<string, object>;
+                if (DicData.ContainsKey("ecode"))
+                {
+                    StartCoroutine(_GetAllUnitData());
                 }
             }
             else

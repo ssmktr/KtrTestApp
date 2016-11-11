@@ -12,6 +12,20 @@ public class UnitData
     public long pc_reg_dt;
     public uint pc_state;
     public List<int> skill_level_arr = new List<int>();
+
+    public void Set(UnitData data)
+    {
+        pc_gsn = data.pc_gsn;
+        pc_id = data.pc_id;
+        star_grade = data.star_grade;
+        pc_position = data.pc_position;
+        pc_reg_dt = data.pc_reg_dt;
+        pc_state = data.pc_state;
+
+        skill_level_arr.Clear();
+        for (int i = 0; i < data.skill_level_arr.Count; ++i)
+            skill_level_arr.Add(data.skill_level_arr[i]);
+    }
 }
 
 // 장비 데이터

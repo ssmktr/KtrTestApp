@@ -53,7 +53,7 @@ public class UnitPanel : MonoBehaviour {
         WWWForm form = new WWWForm();
         form.AddField("account_gsn", 2);
 
-        WWW www = new WWW(Login.DB_URL + "UnitData/GetAllUnitData.php", form);
+        WWW www = new WWW(Login.DB_URL + "Unit/GetAllUnitData.php", form);
 
         yield return www;
 
@@ -72,15 +72,33 @@ public class UnitPanel : MonoBehaviour {
                     {
                         if (DicData.ContainsKey("haveUnit"))
                         {
-                            List<object> UnitData = DicData["haveUnit"] as List<object>;
+                            List<object> UnitData = JsonUtil.GetListValue(DicData, "haveUnit");
                             for (int i = 0; i < UnitData.Count; ++i)
                             {
-                                UnitData data = UnitData[i] as UnitData;
+                                Dictionary<string, object> DicUnit = UnitData[i] as Dictionary<string, object>;
                                 UnitData newData = new UnitData();
-                                //newData.pc_id = UnitData[i]
+                                if (DicUnit.ContainsKey("pc_gsn"))
+                                    newData.pc_gsn = JsonUtil.GetUIntValue(DicUnit, "pc_gsn");
 
-                                GameManager.Instance.MyUnitList.Add(data);
-                                Debug.Log(data.pc_id);
+                                if (DicUnit.ContainsKey("pc_id"))
+                                    newData.pc_id = JsonUtil.GetUIntValue(DicUnit, "pc_id");
+
+                                if (DicUnit.ContainsKey("star_grade"))
+                                    newData.star_grade = JsonUtil.GetIntValue(DicUnit, "star_grade");
+
+                                if (DicUnit.ContainsKey("pc_position"))
+                                    newData.pc_position = JsonUtil.GetUIntValue(DicUnit, "pc_position");
+
+                                if (DicUnit.ContainsKey("pc_reg_dt"))
+                                    newData.pc_reg_dt = JsonUtil.GetLongValue(DicUnit, "pc_reg_dt");
+
+                                if (DicUnit.ContainsKey("star_grade"))
+                                    newData.star_grade = JsonUtil.GetIntValue(DicUnit, "star_grade");
+
+                                //if (DicUnit.ContainsKey("skill_level_arr"))
+                                //    newData.skill_level_arr = JsonUtil.GetUIntValue(DicUnit, "skill_level_arr");
+
+                                GameManager.Instance.MyUnitList.Add(newData);
                             }
                             CreateList();
                         }

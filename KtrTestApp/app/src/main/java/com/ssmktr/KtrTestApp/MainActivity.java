@@ -2,6 +2,7 @@ package com.ssmktr.KtrTestApp;
 
 
 import android.content.Context;
+import android.os.Vibrator;
 import android.provider.Telephony;
 import android.telephony.TelephonyManager;
 import android.view.KeyEvent;
@@ -39,5 +40,11 @@ public class MainActivity extends UnityPlayerActivity {
                 Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    public void OnVibrator(long time)
+    {
+        Vibrator v = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+        v.vibrate(time);
     }
 }

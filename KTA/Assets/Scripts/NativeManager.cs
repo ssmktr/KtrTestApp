@@ -28,4 +28,10 @@ public class NativeManager : Singleton<NativeManager> {
     {
         MyObj.Call("PlayToast", msg);
     }
+
+    // 진동
+    public void OnVibrator(long time)
+    {
+        MyObj.Call("OnVibrator", time);
+    }
 }

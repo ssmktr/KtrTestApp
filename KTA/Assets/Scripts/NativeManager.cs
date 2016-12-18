@@ -34,4 +34,10 @@ public class NativeManager : Singleton<NativeManager> {
     {
         MyObj.Call("OnVibrator", time);
     }
+
+    // 로컬 푸시
+    public void OnLocalAlarm(int time)
+    {
+        MyObj.Call("LocalAlarm", time);
+    }
 }

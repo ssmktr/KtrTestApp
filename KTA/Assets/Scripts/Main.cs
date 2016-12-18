@@ -146,6 +146,8 @@ public class Main : MonoBehaviour {
         OnVibrator.transform.FindChild("name").GetComponent<UILabel>().text = "1.0초 진동";
 
         PlayGamesPlatform.Activate();
+
+        NativeManager.Instance.OnLocalAlarm(5);
     }
 
     // 볼륨, 백키, 등 기기에 달린 버튼누렀을때 해당 번호 얻기

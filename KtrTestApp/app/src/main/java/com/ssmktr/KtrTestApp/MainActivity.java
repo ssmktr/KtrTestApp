@@ -68,17 +68,19 @@ public class MainActivity extends UnityPlayerActivity {
 
     public void LocalAlarm(int time)
     {
-        NotificationManager nm = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
-                .setContentTitle("제목")
-                .setContentText("내용")
-                .setSmallIcon(R.mipmap.ic_launcher)
-                .setAutoCancel(true)
-                .setWhen(System.currentTimeMillis())
-                .setDefaults(Notification.DEFAULT_SOUND | Notification.DEFAULT_VIBRATE | Notification.DEFAULT_LIGHTS);
+//        NotificationManager nm = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+//        NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
+//                .setContentTitle("제목")
+//                .setContentText("내용")
+//                .setSmallIcon(R.mipmap.ic_launcher)
+//                .setAutoCancel(true)
+//                .setWhen(System.currentTimeMillis())
+//                .setDefaults(Notification.DEFAULT_SOUND | Notification.DEFAULT_VIBRATE | Notification.DEFAULT_LIGHTS);
+//
+//        Notification n = builder.build();
+//        n.defaults = Notification.DEFAULT_LIGHTS;
+//        nm.notify(time, n);
 
-        Notification n = builder.build();
-        n.defaults = Notification.DEFAULT_LIGHTS;
-        nm.notify(time, n);
+        
     }
 }

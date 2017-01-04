@@ -98,6 +98,8 @@ public class Main : MonoBehaviour {
         if (bGoogleLogon)
         {
             GoogleLogin.transform.FindChild("name").GetComponent<UILabel>().text = "구글로그아웃";
+
+            GameMgr.Instance.GoScene("Lobby");
         }
         else
         {
@@ -139,6 +141,7 @@ public class Main : MonoBehaviour {
     {
         UIEventListener.Get(GoogleLogin).onClick = (sender) =>
         {
+#if UNITY_ANDROID && !UNITY_EDITOR
             if (!Social.localUser.authenticated)
             {
                 Social.localUser.Authenticate(LoginCallBackGPGS);
@@ -148,6 +151,9 @@ public class Main : MonoBehaviour {
                 ((GooglePlayGames.PlayGamesPlatform)Social.Active).SignOut();
                 LoginCallBackGPGS(false);
             }
+#else
+            GameMgr.Instance.GoScene("Lobby");
+#endif
         };
 
         UIEventListener.Get(GoogleId).onClick = (sender) =>
@@ -199,9 +205,9 @@ public class Main : MonoBehaviour {
         };
     }
 
-    #endregion GOOGLE
+#endregion GOOGLE
 
-    #region FACEBOOK
+#region FACEBOOK
 
     void SetFaceBookBtn()
     {
@@ -211,5 +217,5 @@ public class Main : MonoBehaviour {
         };
     }
 
-    #endregion FACEBOOK
+#endregion FACEBOOK
 }

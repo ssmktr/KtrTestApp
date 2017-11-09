@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Main : MonoBehaviour {
+public class FireBaseScene : MonoBehaviour {
 
     private void Start()
     {

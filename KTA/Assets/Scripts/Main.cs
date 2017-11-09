@@ -118,7 +118,7 @@ public class Main : MonoBehaviour {
         VibratorTime = 1000;
         OnVibrator.transform.FindChild("name").GetComponent<UILabel>().text = "1.0초 진동";
 
-        PlayGamesPlatform.Activate();
+        //PlayGamesPlatform.Activate();
 
         NativeManager.Instance.OnLocalAlarm(5);
     }

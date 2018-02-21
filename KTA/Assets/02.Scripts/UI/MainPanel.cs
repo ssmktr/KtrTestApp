@@ -61,7 +61,7 @@ public class MainPanel : MonoBehaviour {
             {
                 MessageLbl.text = "FaceBook Login!!";
                 AccessToken aToken = AccessToken.CurrentAccessToken;
-                MessageLbl.text += string.Format("\naToken string : {0}", aToken.TokenString);
+                //MessageLbl.text += string.Format("\naToken string : {0}", aToken.TokenString);
                 MessageLbl.text += string.Format("\nUser ID : {0}", aToken.UserId);
 
                 foreach (string perm in aToken.Permissions)
@@ -74,6 +74,8 @@ public class MainPanel : MonoBehaviour {
                 MessageLbl.text = "User cancelled login";
             }
         }
+
+        DealWithFBMenus(FB.IsLoggedIn);
     }
 
     void DealWithFBMenus(bool isLoggedIn)

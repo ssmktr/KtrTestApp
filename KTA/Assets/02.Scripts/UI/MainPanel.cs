@@ -6,6 +6,7 @@ using Facebook.Unity;
 public class MainPanel : MonoBehaviour {
 
     public UILabel MessageLbl;
+    public UI2DSprite Profile;
 
     private void Start()
     {
@@ -104,6 +105,10 @@ public class MainPanel : MonoBehaviour {
         if (result.Error == null)
         {
             MessageLbl.text += "\n나의 프로필 이미지 성공";
+            if (Profile != null)
+            {
+                Profile.sprite2D = Sprite.Create(result.Texture, new Rect(0, 0, 128, 128), new Vector2());
+            }
         }
         else
         {

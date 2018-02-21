@@ -83,7 +83,7 @@ public class MainPanel : MonoBehaviour {
     {
         if (isLoggedIn)
         {
-            FB.API("/me?fields-first_name", HttpMethod.GET, DisplayUsername);
+            FB.API("/me?fields=first_name", HttpMethod.GET, DisplayUsername);
             FB.API("/me/picture?type=square&height=128&width=128", HttpMethod.GET, DisplayProfilePic);
         }
     }

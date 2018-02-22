@@ -11,24 +11,6 @@
     <file>Assets/Plugins/Android/appcompat-v7-25.3.1.aar</file>
     <file>Assets/Plugins/Android/cardview-v7-25.3.1.aar</file>
     <file>Assets/Plugins/Android/customtabs-25.3.1.aar</file>
-    <file>Assets/Plugins/Android/gpgs-plugin-support-0.9.50.aar</file>
-    <file>Assets/Plugins/Android/play-services-auth-11.6.2.aar</file>
-    <file>Assets/Plugins/Android/play-services-auth-api-phone-11.6.2.aar</file>
-    <file>Assets/Plugins/Android/play-services-auth-api-phone-license-11.6.2.aar</file>
-    <file>Assets/Plugins/Android/play-services-auth-base-11.6.2.aar</file>
-    <file>Assets/Plugins/Android/play-services-auth-base-license-11.6.2.aar</file>
-    <file>Assets/Plugins/Android/play-services-base-11.6.2.aar</file>
-    <file>Assets/Plugins/Android/play-services-base-license-11.6.2.aar</file>
-    <file>Assets/Plugins/Android/play-services-basement-11.6.2.aar</file>
-    <file>Assets/Plugins/Android/play-services-basement-license-11.6.2.aar</file>
-    <file>Assets/Plugins/Android/play-services-drive-11.6.2.aar</file>
-    <file>Assets/Plugins/Android/play-services-drive-license-11.6.2.aar</file>
-    <file>Assets/Plugins/Android/play-services-games-11.6.2.aar</file>
-    <file>Assets/Plugins/Android/play-services-games-license-11.6.2.aar</file>
-    <file>Assets/Plugins/Android/play-services-nearby-11.6.2.aar</file>
-    <file>Assets/Plugins/Android/play-services-nearby-license-11.6.2.aar</file>
-    <file>Assets/Plugins/Android/play-services-tasks-11.6.2.aar</file>
-    <file>Assets/Plugins/Android/play-services-tasks-license-11.6.2.aar</file>
     <file>Assets/Plugins/Android/support-annotations-25.3.1.jar</file>
     <file>Assets/Plugins/Android/support-compat-25.3.1.aar</file>
     <file>Assets/Plugins/Android/support-core-ui-25.3.1.aar</file>

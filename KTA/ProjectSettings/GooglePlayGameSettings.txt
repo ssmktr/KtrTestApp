@@ -1,10 +1,10 @@
-lastUpgrade=00935
-proj.pluginVersion=0.9.35
-proj.AppId=427119942209
+lastUpgrade=00950
+proj.pluginVersion=0.9.50
+proj.AppId=77858670744
 and.BundleId=com.ssmktr.KtrTestApp
-proj.classDir=Assets%2fScripts%2f
+proj.classDir=Assets%2f02.Scripts%2f
 proj.ConstantsClassName=GoogleManager.GoogleData
-and.ResourceData=%3c%3fxml+version%3d%221.0%22+encoding%3d%22utf-8%22%3f%3e%0d%0a%3c%21--%0d%0aGoogle+Play+game+services+IDs.%0d%0aSave+this+file+as+res%2fvalues%2fgames-ids.xml+in+your+project.%0d%0a--%3e%0d%0a%3cresources%3e%0d%0a++%3cstring+name%3d%22app_id%22%3e427119942209%3c%2fstring%3e%0d%0a++%3cstring+name%3d%22package_name%22%3ecom.ssmktr.KtrTestApp%3c%2fstring%3e%0d%0a++%3cstring+name%3d%22achievement_1%22%3eCgkIwbTUkrcMEAIQAQ%3c%2fstring%3e%0d%0a++%3cstring+name%3d%22achievement_2%22%3eCgkIwbTUkrcMEAIQAg%3c%2fstring%3e%0d%0a++%3cstring+name%3d%22achievement_3%22%3eCgkIwbTUkrcMEAIQAw%3c%2fstring%3e%0d%0a++%3cstring+name%3d%22achievement_4%22%3eCgkIwbTUkrcMEAIQBQ%3c%2fstring%3e%0d%0a++%3cstring+name%3d%22achievement_5%22%3eCgkIwbTUkrcMEAIQBg%3c%2fstring%3e%0d%0a++%3cstring+name%3d%22leaderboard_ktrtestappleaderboard%22%3eCgkIwbTUkrcMEAIQBA%3c%2fstring%3e%0d%0a%3c%2fresources%3e%0d%0a
-and.ClientId=427119942209-uc1egflc72c7cdd8hiaa3ib0hv2h0jeo.apps.googleusercontent.com
+and.ResourceData=%3c%3fxml+version%3d%221.0%22+encoding%3d%22utf-8%22%3f%3e%0d%0a%3c%21--%0d%0aGoogle+Play+game+services+IDs.%0d%0aSave+this+file+as+res%2fvalues%2fgames-ids.xml+in+your+project.%0d%0a--%3e%0d%0a%3cresources%3e%0d%0a++%3c%21--+app_id+--%3e%0d%0a++%3cstring+name%3d%22app_id%22+translatable%3d%22false%22%3e77858670744%3c%2fstring%3e%0d%0a++%3c%21--+package_name+--%3e%0d%0a++%3cstring+name%3d%22package_name%22+translatable%3d%22false%22%3ecom.ssmktr.KtrTestApp%3c%2fstring%3e%0d%0a++%3c%21--+achievement+1+--%3e%0d%0a++%3cstring+name%3d%22achievement_1%22+translatable%3d%22false%22%3eCgkImJH0haICEAIQAQ%3c%2fstring%3e%0d%0a%3c%2fresources%3e%0d%0a
+and.ClientId=77858670744-qock46n047un0582s4oiodp64qntjgid.apps.googleusercontent.com
 proj.requireGPlus=false
 android.SetupDone=true

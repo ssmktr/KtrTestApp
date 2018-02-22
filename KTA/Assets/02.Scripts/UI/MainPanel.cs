@@ -5,10 +5,63 @@ using Facebook.Unity;
 
 public class MainPanel : MonoBehaviour {
 
+    public GameObject GoogleLoginBtn, GoogleLogoutBtn, GoogleImageBtn, FaceBookLoginBtn, FaceBookLogoutBtn;
     public UILabel MessageLbl;
     public UI2DSprite Profile;
 
+    private void Awake()
+    {
+        UIEventListener.Get(GoogleLoginBtn).onClick = (sender) =>
+        {
+            MessageLbl.text = "Login...";
+            if (!NativeManager.Instance.IsGoogleLogin)
+            {
+                NativeManager.Instance.GoogleLogin();
+                MessageLbl.text = "Login Success";
+            }
+        };
+
+        UIEventListener.Get(GoogleLogoutBtn).onClick = (sender) =>
+        {
+            MessageLbl.text = "Logout...";
+            if (NativeManager.Instance.IsGoogleLogin)
+            {
+                NativeManager.Instance.GoogleLogout();
+                MessageLbl.text = "Logout Success";
+            }
+        };
+
+        UIEventListener.Get(GoogleImageBtn).onClick = (sender) =>
+        {
+            if (NativeManager.Instance.IsGoogleLogin)
+            {
+                MessageLbl.text = NativeManager.Instance.GetGoogleId();
+
+                Profile.sprite2D = NativeManager.Instance.GetGoogleImage();
+                Profile.MakePixelPerfect();
+            }
+        };
+
+        UIEventListener.Get(FaceBookLoginBtn).onClick = (sender) =>
+        {
+            FaceBookLogin();
+        };
+
+        UIEventListener.Get(FaceBookLogoutBtn).onClick = (sender) =>
+        {
+            FaceBookLogout();
+        };
+    }
+
     private void Start()
+    {
+        NativeManager.Instance.Init();
+
+        FaceBookInit();
+    }
+
+    #region FACEBOOK
+    void FaceBookInit()
     {
         if (!FB.IsInitialized)
         {
@@ -62,7 +115,7 @@ public class MainPanel : MonoBehaviour {
             {
                 MessageLbl.text = "FaceBook Login!!";
                 AccessToken aToken = AccessToken.CurrentAccessToken;
-                //MessageLbl.text += string.Format("\naToken string : {0}", aToken.TokenString);
+                MessageLbl.text += string.Format("\naToken string : {0}", aToken.TokenString);
                 MessageLbl.text += string.Format("\nUser ID : {0}", aToken.UserId);
 
                 foreach (string perm in aToken.Permissions)
@@ -105,10 +158,8 @@ public class MainPanel : MonoBehaviour {
         if (result.Error == null)
         {
             MessageLbl.text += "\n나의 프로필 이미지 성공";
-            if (Profile != null)
-            {
-                Profile.sprite2D = Sprite.Create(result.Texture, new Rect(0, 0, 128, 128), new Vector2());
-            }
+            Profile.sprite2D = Sprite.Create(result.Texture, new Rect(0, 0, 128, 128), new Vector2());
+            Profile.MakePixelPerfect();
         }
         else
         {
@@ -116,22 +167,22 @@ public class MainPanel : MonoBehaviour {
         }
     }
 
+    //친구초대
+    public void InviteFriends()
+    {
+        // 순서 변경시 컴파일 에러 발생
+        // message : 보낼 메시지
+        // title : 메시지 보낼 친구목록 창의 타이틀
+        FB.AppRequest(
+            message: "This gmae is awesome, join me. now!",
+            title: "Invite your firends to join you"
+        );
+    }
+
     void FaceBookLogout()
     {
         FB.LogOut();
         MessageLbl.text = "Logout";
     }
-
-    private void OnGUI()
-    {
-        if (GUI.Button(new Rect(50, 50, 200, 100), "Login"))
-        {
-            FaceBookLogin();
-        }
-
-        if (GUI.Button(new Rect(50, 250, 200, 100), "Logout"))
-        {
-            FaceBookLogout();
-        }
-    }
+    #endregion // FACEBOOK
 }

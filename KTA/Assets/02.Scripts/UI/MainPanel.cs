@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Facebook.Unity;
 
+using TinyJSON;
+
 public class MainPanel : MonoBehaviour {
 
-    public GameObject GoogleLoginBtn, GoogleLogoutBtn, GoogleImageBtn, FaceBookLoginBtn, FaceBookLogoutBtn;
+    public GameObject GoogleLoginBtn, GoogleLogoutBtn, GoogleImageBtn, FaceBookLoginBtn, FaceBookLogoutBtn, FaceBookTestBtn, FaceBookShowTestBtn;
     public UILabel MessageLbl;
     public UI2DSprite Profile;
 
@@ -44,12 +46,30 @@ public class MainPanel : MonoBehaviour {
 
         UIEventListener.Get(FaceBookLoginBtn).onClick = (sender) =>
         {
+            Debug.Log("FACEBOOK LOGIN...");
+
             FaceBookLogin();
         };
 
         UIEventListener.Get(FaceBookLogoutBtn).onClick = (sender) =>
         {
+            Debug.Log("FACEBOOK LOGOUT...");
+
             FaceBookLogout();
+        };
+
+        UIEventListener.Get(FaceBookTestBtn).onClick = (sender) =>
+        {
+            MessageLbl.text = "FACEBOOK TEST BTN";
+
+            SetScores();
+        };
+
+        UIEventListener.Get(FaceBookShowTestBtn).onClick = (sender) =>
+        {
+            MessageLbl.text = "FACEBOOK SHOW TEST BTN";
+
+           QueryScores();
         };
     }
 
@@ -177,6 +197,50 @@ public class MainPanel : MonoBehaviour {
             message: "This gmae is awesome, join me. now!",
             title: "Invite your firends to join you"
         );
+    }
+
+    //점수 불러오기
+    public void QueryScores()
+    {
+        FB.API("/app/scores?fields=score,user.limit(30)", HttpMethod.GET, ScoresCallback);
+    }
+
+    //점수 Scores Console에 표시하기
+    private void ScoresCallback(IResult result)
+    {
+        Debug.Log("Scores Callback : " + result.ResultDictionary.ToJson());
+        MessageLbl.text = result.ResultDictionary.ToJson();
+    }
+
+    //점수 설정하기
+    public void SetScores()
+    {
+        //Dictionary<string, string> scoreData = new Dictionary<string, string>();
+        //scoreData["score"] = Random.Range(10, 200).ToString();
+        //FB.API("/me/scores", HttpMethod.POST, (result) =>
+        //{
+        //    Debug.Log(result.ResultDictionary.ToString());
+        //    //Debug.Log("Score submit result :" + result.ResultDictionary[""]);
+        //}, scoreData);
+
+        Dictionary<string, string> scoreData = new Dictionary<string, string>();
+        //Dictionary<string, string> dic = new Dictionary<string, string>();
+        //for (int i = 0; i < 10; ++i)
+        //{
+        //    dic[i.ToString()] = Random.Range(10, 200).ToString();
+        //}
+
+        scoreData["score"] = Random.Range(10, 200).ToString();
+        scoreData["score2"] = Random.Range(10, 200).ToString();
+        //scoreData["score"] = MiniJSON.Json.Serialize(dic);
+        FB.API("/me/scores", HttpMethod.POST, ScoreCallBack, scoreData);
+    }
+
+    void ScoreCallBack(IGraphResult result)
+    {
+        MessageLbl.text = MiniJSON.Json.Serialize(result.ResultDictionary);
+
+        QueryScores();
     }
 
     void FaceBookLogout()

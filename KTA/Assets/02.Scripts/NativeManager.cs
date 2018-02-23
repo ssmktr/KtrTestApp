@@ -7,8 +7,6 @@ using GooglePlayGames;
 using GooglePlayGames.BasicApi;
 using GooglePlayGames.BasicApi.SavedGame;
 
-//using Facebook.Unity;
-
 public class NativeManager : Singleton<NativeManager>
 {
 
@@ -40,7 +38,7 @@ public class NativeManager : Singleton<NativeManager>
     {
         if (Social.localUser.authenticated)
         {
-            ((GooglePlayGames.PlayGamesPlatform)Social.Active).SignOut();
+            ((PlayGamesPlatform)Social.Active).SignOut();
             IsGoogleLogin = false;
         }
     }
@@ -67,6 +65,15 @@ public class NativeManager : Singleton<NativeManager>
             return Social.localUser.userName;
 
         return null;
+    }
+
+    // 리더보드 사용
+    public void LeaderBoard()
+    {
+        Social.ReportScore(10, GoogleManager.GoogleData.leaderboard_ktrtestappleaderboard, (result) =>
+        {
+
+        });
     }
 
     #endregion // GOOGLE

@@ -67,13 +67,34 @@ public class NativeManager : Singleton<NativeManager>
         return null;
     }
 
-    // 리더보드 사용
-    public void LeaderBoard()
+    // 리더보드 보여주기
+    public void GoogleShowLeaderBoard()
     {
-        Social.ReportScore(10, GoogleManager.GoogleData.leaderboard_ktrtestappleaderboard, (result) =>
-        {
+        Social.ShowLeaderboardUI();
+    }
 
+    // 리더보드 사용
+    public void GoogleUseLeaderBoard(long score, System.Action<string> callback)
+    {
+        Social.ReportScore(score, GoogleManager.GoogleData.leaderboard_ktrtestappleaderboard, (result) =>
+        {
+            if (result)
+                callback(string.Format("SCORE : {0} SUCCESS", score));
+            else
+                callback(string.Format("SCORE : {0} FAIL", score));
         });
+    }
+
+    // 리더보드 스코어 가져오기
+    public void GoogleGetLeaderBoardScore(System.Action<UnityEngine.SocialPlatforms.IScore[]> callback)
+    {
+        Social.LoadScores(GoogleManager.GoogleData.leaderboard_ktrtestappleaderboard, callback);
+    }
+
+    // 업적 보기
+    public void GoogleShowAchievement()
+    {
+        Social.ShowAchievementsUI();
     }
 
     #endregion // GOOGLE

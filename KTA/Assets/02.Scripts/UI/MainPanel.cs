@@ -7,7 +7,7 @@ using TinyJSON;
 
 public class MainPanel : MonoBehaviour {
 
-    public GameObject GoogleLoginBtn, GoogleLogoutBtn, GoogleImageBtn, GoogleShowAchievementBtn, GoogleShowLeaderBoardBtn, GoogleUseLeaderBoardBtn, GoogleGetLeaderBoardScoreBtn;
+    public GameObject GoogleLoginBtn, GoogleLogoutBtn, GoogleImageBtn, GoogleShowAchievementBtn, GoogleUseAchievementBtn, GoogleShowLeaderBoardBtn, GoogleUseLeaderBoardBtn, GoogleGetLeaderBoardScoreBtn;
     public GameObject FaceBookLoginBtn, FaceBookLogoutBtn, FaceBookTestBtn, FaceBookShowTestBtn;
     public UILabel MessageLbl;
     public UI2DSprite Profile;
@@ -49,6 +49,17 @@ public class MainPanel : MonoBehaviour {
             }
         };
 
+        UIEventListener.Get(GoogleUseAchievementBtn).onClick = (sender) =>
+        {
+            if (NativeManager.Instance.IsGoogleLogin)
+            {
+                NativeManager.Instance.GoogleUseAchievement(100f, (result) => 
+                {
+                    MessageLbl.text = result;
+                });
+            }
+        };
+
         UIEventListener.Get(GoogleShowLeaderBoardBtn).onClick = (sender) =>
         {
             if (NativeManager.Instance.IsGoogleLogin)
@@ -61,7 +72,7 @@ public class MainPanel : MonoBehaviour {
         {
             if (NativeManager.Instance.IsGoogleLogin)
             {
-                NativeManager.Instance.GoogleUseLeaderBoard(Random.Range(1, 100000), (result)=> 
+                NativeManager.Instance.GoogleUseLeaderBoard((long)Random.Range(1, 100000), (result)=> 
                 {
                     MessageLbl.text = result;
                 });
@@ -76,6 +87,7 @@ public class MainPanel : MonoBehaviour {
                 NativeManager.Instance.GoogleGetLeaderBoardScore(result =>
                 {
                     UnityEngine.SocialPlatforms.IScore[] scoreArray = result;
+                    MessageLbl.text = scoreArray.Length.ToString() + "개 데이터 있음";
                     if (scoreArray.Length > 0)
                     {
                         for (int i = 0; i < scoreArray.Length; ++i)
@@ -83,8 +95,6 @@ public class MainPanel : MonoBehaviour {
                             MessageLbl.text += string.Format("User Id : {0}, Value : {1}, Rank : {2}\n\n", scoreArray[i].userID, scoreArray[i].value, scoreArray[i].rank);
                         }
                     }
-                    else
-                        MessageLbl.text = "EMPTY...";
                 });
             }
         };
@@ -180,7 +190,7 @@ public class MainPanel : MonoBehaviour {
             {
                 MessageLbl.text = "FaceBook Login!!";
                 AccessToken aToken = AccessToken.CurrentAccessToken;
-                MessageLbl.text += string.Format("\naToken string : {0}", aToken.TokenString);
+                //MessageLbl.text += string.Format("\naToken string : {0}", aToken.TokenString);
                 MessageLbl.text += string.Format("\nUser ID : {0}", aToken.UserId);
 
                 foreach (string perm in aToken.Permissions)

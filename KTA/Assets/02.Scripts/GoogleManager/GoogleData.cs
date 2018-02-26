@@ -25,7 +25,7 @@ namespace GoogleManager
 {
 public static class GoogleData
 {
-        public const string leaderboard_ktrtestappleaderboard = "CgkImJH0haICEAIQAg"; // <GPGSID>
+        public const string leaderboard_leaderboard_001 = "CgkImJH0haICEAIQBA"; // <GPGSID>
         public const string achievement_1 = "CgkImJH0haICEAIQAQ"; // <GPGSID>
 
 }

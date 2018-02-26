@@ -76,25 +76,36 @@ public class NativeManager : Singleton<NativeManager>
     // 리더보드 사용
     public void GoogleUseLeaderBoard(long score, System.Action<string> callback)
     {
-        Social.ReportScore(score, GoogleManager.GoogleData.leaderboard_ktrtestappleaderboard, (result) =>
+        Social.ReportScore(score, GoogleManager.GoogleData.leaderboard_leaderboard_001, (result) =>
         {
             if (result)
-                callback(string.Format("SCORE : {0} SUCCESS", score));
+                callback(string.Format("LEADERBOARD SCORE : {0} SUCCESS", score));
             else
-                callback(string.Format("SCORE : {0} FAIL", score));
+                callback(string.Format("LEADERBOARD SCORE : {0} FAIL", score));
         });
     }
 
     // 리더보드 스코어 가져오기
     public void GoogleGetLeaderBoardScore(System.Action<UnityEngine.SocialPlatforms.IScore[]> callback)
     {
-        Social.LoadScores(GoogleManager.GoogleData.leaderboard_ktrtestappleaderboard, callback);
+        Social.LoadScores(GoogleManager.GoogleData.leaderboard_leaderboard_001, callback);
     }
 
     // 업적 보기
     public void GoogleShowAchievement()
     {
         Social.ShowAchievementsUI();
+    }
+
+    public void GoogleUseAchievement(float progress, System.Action<string> callback)
+    {
+        Social.ReportProgress(GoogleManager.GoogleData.achievement_1, progress, (result) => 
+        {
+            if (result)
+                callback(string.Format("ACHIEVEMENT PROGRESS : {0} SUCCESS", progress));
+            else
+                callback(string.Format("ACHIEVEMENT PROGRESS : {0} FAIL", progress));
+        });
     }
 
     #endregion // GOOGLE
